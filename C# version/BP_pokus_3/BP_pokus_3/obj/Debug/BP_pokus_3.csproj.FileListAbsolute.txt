@@ -1,0 +1,76 @@
+C:\Users\Comp\Documents\SharpDevelop Projects\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csprojResolveAssemblyReference.cache
+C:\Users\Comp\Documents\SharpDevelop Projects\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.MainForm.resources
+C:\Users\Comp\Documents\SharpDevelop Projects\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csproj.GenerateResource.Cache
+C:\Users\Comp\Documents\SharpDevelop Projects\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe.config
+C:\Users\Comp\Documents\SharpDevelop Projects\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe
+C:\Users\Comp\Documents\SharpDevelop Projects\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Documents\SharpDevelop Projects\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.exe
+C:\Users\Comp\Documents\SharpDevelop Projects\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.pdb
+C:\Users\Nkita\Desktop\BP_pokus_3-20170213T111920Z\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csprojResolveAssemblyReference.cache
+C:\Users\Nkita\Desktop\BP_pokus_3-20170213T111920Z\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.MainForm.resources
+C:\Users\Nkita\Desktop\BP_pokus_3-20170213T111920Z\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csproj.GenerateResource.Cache
+C:\Users\Nkita\Desktop\BP_pokus_3-20170213T111920Z\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.exe
+C:\Users\Comp\Desktop\BP_pokus_3-20170213T111920Z\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csprojResolveAssemblyReference.cache
+C:\Users\Comp\Desktop\BP_pokus_3-20170213T111920Z\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.MainForm.resources
+C:\Users\Comp\Desktop\BP_pokus_3-20170213T111920Z\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csproj.GenerateResource.Cache
+C:\Users\Comp\Desktop\BP_pokus_3-20170213T111920Z\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.exe
+C:\Users\Comp\Desktop\BP_pokus_3-20170213T111920Z\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe.config
+C:\Users\Comp\Desktop\BP_pokus_3-20170213T111920Z\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe
+C:\Users\Comp\Desktop\BP_pokus_3-20170213T111920Z\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Desktop\BP_pokus_3-20170213T111920Z\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Desktop\BP_pokus_3__17.3.2017\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe.config
+C:\Users\Comp\Desktop\BP_pokus_3__17.3.2017\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe
+C:\Users\Comp\Desktop\BP_pokus_3__17.3.2017\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Desktop\BP_pokus_3__17.3.2017\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csprojResolveAssemblyReference.cache
+C:\Users\Comp\Desktop\BP_pokus_3__17.3.2017\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.MainForm.resources
+C:\Users\Comp\Desktop\BP_pokus_3__17.3.2017\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csproj.GenerateResource.Cache
+C:\Users\Comp\Desktop\BP_pokus_3__17.3.2017\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.exe
+C:\Users\Comp\Desktop\BP_pokus_3__17.3.2017\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe.config
+C:\Users\Comp\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe
+C:\Users\Comp\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csprojResolveAssemblyReference.cache
+C:\Users\Comp\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.MainForm.resources
+C:\Users\Comp\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csproj.GenerateResource.Cache
+C:\Users\Comp\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.exe
+C:\Users\Comp\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.pdb
+C:\Users\Nkita\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe.config
+C:\Users\Nkita\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe
+C:\Users\Nkita\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.pdb
+C:\Users\Nkita\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csprojResolveAssemblyReference.cache
+C:\Users\Nkita\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.MainForm.resources
+C:\Users\Nkita\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csproj.GenerateResource.Cache
+C:\Users\Nkita\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.exe
+C:\Users\Nkita\Documents\GitHub\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Desktop\ПРоба\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe.config
+C:\Users\Comp\Desktop\ПРоба\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe
+C:\Users\Comp\Desktop\ПРоба\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Desktop\ПРоба\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csprojResolveAssemblyReference.cache
+C:\Users\Comp\Desktop\ПРоба\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.MainForm.resources
+C:\Users\Comp\Desktop\ПРоба\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csproj.GenerateResource.Cache
+C:\Users\Comp\Desktop\ПРоба\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.exe
+C:\Users\Comp\Desktop\ПРоба\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Desktop\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe.config
+C:\Users\Comp\Desktop\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe
+C:\Users\Comp\Desktop\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Desktop\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csprojResolveAssemblyReference.cache
+C:\Users\Comp\Desktop\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.MainForm.resources
+C:\Users\Comp\Desktop\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csproj.GenerateResource.Cache
+C:\Users\Comp\Desktop\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.exe
+C:\Users\Comp\Desktop\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Desktop\Универ\BP\Версии кода\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe.config
+C:\Users\Comp\Desktop\Универ\BP\Версии кода\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe
+C:\Users\Comp\Desktop\Универ\BP\Версии кода\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Desktop\Универ\BP\Версии кода\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csprojResolveAssemblyReference.cache
+C:\Users\Comp\Desktop\Универ\BP\Версии кода\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.MainForm.resources
+C:\Users\Comp\Desktop\Универ\BP\Версии кода\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csproj.GenerateResource.Cache
+C:\Users\Comp\Desktop\Универ\BP\Версии кода\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.exe
+C:\Users\Comp\Desktop\Универ\BP\Версии кода\Чистый код\BP_pokus_3\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Documents\GitHub\IGY\C# version\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csprojResolveAssemblyReference.cache
+C:\Users\Comp\Documents\GitHub\IGY\C# version\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.MainForm.resources
+C:\Users\Comp\Documents\GitHub\IGY\C# version\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.csproj.GenerateResource.Cache
+C:\Users\Comp\Documents\GitHub\IGY\C# version\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.exe
+C:\Users\Comp\Documents\GitHub\IGY\C# version\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe.config
+C:\Users\Comp\Documents\GitHub\IGY\C# version\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.exe
+C:\Users\Comp\Documents\GitHub\IGY\C# version\BP_pokus_3\BP_pokus_3\bin\Debug\BP_pokus_3.pdb
+C:\Users\Comp\Documents\GitHub\IGY\C# version\BP_pokus_3\BP_pokus_3\obj\Debug\BP_pokus_3.pdb

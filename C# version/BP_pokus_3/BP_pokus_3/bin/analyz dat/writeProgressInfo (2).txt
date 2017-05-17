@@ -1,0 +1,3 @@
+epoch = 1 error min. = 87,5 test= 10     h: 0 m: 0 s: 2
+epoch = 2 error min. = 87,5 test= 10     h: 0 m: 0 s: 5
+epoch = 3 error min. = 87,5 test= 10     h: 0 m: 0 s: 8

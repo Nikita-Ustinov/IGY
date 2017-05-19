@@ -22,27 +22,35 @@ namespace BP_pokus_3
 		public int druhaVrstvaOwn;
 		public int tretiVrstvaOwn;
 		
+		public static int cisloFiltra = 0;
+		
 		public LinkedList<Convolution> convolutions = new LinkedList<Convolution>();
 		
 		public Neuronet()
 		{
-			addFilter(11);					//pridani konvoluci 11x11  
-			addFilter(11);					//pridani konvoluci 11x11  
-			addFilter(11);					//pridani konvoluci 11x11  
-			addFilter(11);					//pridani konvoluci 11x11  
-			addFilter(11);					//pridani konvoluci 11x11 
+			addFilter(11,11,3);				//pridani konvoluci 11x11x3 
+			addFilter(11,11,3);				//pridani konvoluci 11x11x3   
+			addFilter(11,11,3);				//pridani konvoluci 11x11x3   
+			addFilter(11,11,3);				//pridani konvoluci 11x11x3   
+			addFilter(11,11,3);
 			
-			addFilter(5);					//pridani konvoluci 5x5   
-			addFilter(5);					//pridani konvoluci 5x5
-			addFilter(5);					//pridani konvoluci 5x5
-			addFilter(5);					//pridani konvoluci 5x5
-			addFilter(5);					//pridani konvoluci 5x5
+//			addFilter(11);					//pridani konvoluci 11x11  
+//			addFilter(11);					//pridani konvoluci 11x11  
+//			addFilter(11);					//pridani konvoluci 11x11  
+//			addFilter(11);					//pridani konvoluci 11x11  
+//			addFilter(11);					//pridani konvoluci 11x11 
 			
-			addFilter(3);					//pridani konvoluci 3x3  
-			addFilter(3);					//pridani konvoluci 3x3  
-			addFilter(3);					//pridani konvoluci 3x3  
-			addFilter(3);					//pridani konvoluci 3x3  
-			addFilter(3);					//pridani konvoluci 3x3  
+			addFilter(5,5);					//pridani konvoluci 5x5   
+			addFilter(5,5);					//pridani konvoluci 5x5
+			addFilter(5,5);					//pridani konvoluci 5x5
+			addFilter(5,5);					//pridani konvoluci 5x5
+			addFilter(5,5);					//pridani konvoluci 5x5
+			
+			addFilter(3,3);					//pridani konvoluci 3x3  
+			addFilter(3,3);					//pridani konvoluci 3x3  
+			addFilter(3,3);					//pridani konvoluci 3x3  
+			addFilter(3,3);					//pridani konvoluci 3x3  
+			addFilter(3,3);					//pridani konvoluci 3x3  
 			
 			l0= new List(0);				//create first fully connected layer  - prvni vrstva
 			l1= new List(1);				//create second fully connected layer - druha vrstva
@@ -54,10 +62,10 @@ namespace BP_pokus_3
 			tretiVrstvaOwn = tretiVrstva;
 		}
 		
-		void addFilter(int size) {
-			int cisloFiltra = 0;
+		void addFilter(int size1, int size2) {
+			cisloFiltra =0;
 			if(convolutions.First==null) {
-				convolutions.AddLast(new Convolution(size,cisloFiltra));
+				convolutions.AddLast(new Convolution(size1, size2, cisloFiltra));
 			} 
 			else {
 				LinkedListNode<Convolution> templ = convolutions.First;
@@ -65,7 +73,23 @@ namespace BP_pokus_3
 					templ = templ.Next;
 					cisloFiltra++;
 				}
-				convolutions.AddLast(new Convolution(size, cisloFiltra));
+				convolutions.AddLast(new Convolution(size1, size2, cisloFiltra));
+			}
+				
+		}
+		
+		void addFilter(int size1, int size2, int size3) {
+			cisloFiltra=0;
+			if(convolutions.First==null) {
+				convolutions.AddLast(new Convolution(size1, size2, size3, cisloFiltra));
+			} 
+			else {
+				LinkedListNode<Convolution> templ = convolutions.First;
+				while(templ!=null) {
+					templ = templ.Next;
+					cisloFiltra++;
+				}
+				convolutions.AddLast(new Convolution(size1, size2, size3, cisloFiltra));
 			}
 				
 		}

@@ -24,7 +24,7 @@ namespace BP_pokus_3
 		public int counterAddNeuron=0;
 		public int iterationWithoutNewNeuron=0;
 		bool newNeuron = false;
-		
+		static int countException = 0;
 		public  void newEpoch() {
 			for (int i=0; i<10; i++) {
 				UzByli[i] = false;
@@ -38,53 +38,105 @@ namespace BP_pokus_3
 		
 		public MainForm(int i) {}
 		
-		public  double[,] getPicture() {
+//		public Picture getPicture() {
+//			Random rand = new Random();
+//			int a;
+//			do {
+//				a = rand.Next(0, 10);
+//			} while (UzByli[a] == true);
+//			String fileName = a.ToString();
+//			UzByli[a] = true;
+//			Answer = a;
+//			return ImgToRightPicture(fileName); 				
+//		}
+		
+		public Picture getPicture(bool ifColor) {
 			Random rand = new Random();
 			int a;
 			do {
 				a = rand.Next(0, 10);
 			} while (UzByli[a] == true);
-			String fileName = a.ToString()+".jpeg";
+			String fileName = a.ToString();
 			UzByli[a] = true;
 			Answer = a;
-			return ImgToRightPicture(fileName);
+			return ImgToRightPicture(fileName, ifColor); 							
 		}
 		
-		double[,] ImgToRightPicture(String file) {
-			Image img = Image.FromFile(file);
-			Bitmap bm = new Bitmap(img);
+//		double[,] ImgToRightPicture(String file) {
+//			file += ".jpeg";
+//			Image img = Image.FromFile(file);
+//			Bitmap bm = new Bitmap(img);
+//			Color color =new Color();
+//			double[,] vysledek = new double[39,30];
+//			for (int i=0;i<39; i++) {
+//				for (int j=0; j<30; j++) {
+//					color = bm.GetPixel(j,i);
+//					vysledek[i,j] = color.GetBrightness();
+//				}
+//			}
+//			return vysledek;
+//		}
+		
+		Picture ImgToRightPicture(String file, bool isColor) {
 			Color color =new Color();
-			double[,] vysledek = new double[39,30];
-			
-			for (int i=0;i<39; i++) {
-				for (int j=0; j<30; j++) {
-					color = bm.GetPixel(j,i);
-					vysledek[i,j] = color.GetBrightness();
+			if(isColor) {
+				file += ".jpg";
+				Image img = Image.FromFile(file);
+				Bitmap bm = new Bitmap(img);
+				Picture vysledek = new Picture(39,30,3);
+				for (int i=0;i<39; i++) {
+					for (int j=0; j<30; j++) {
+						color = bm.GetPixel(j,i);
+						for(int k=0; k<3; k++) {
+							if (k==0)
+								vysledek.map3D[i,j,k] = normalization(color.R);
+							if (k==1)
+								vysledek.map3D[i,j,k] = normalization(color.G);
+							if (k==2)
+								vysledek.map3D[i,j,k] = normalization(color.B);
+						}
+					}
 				}
-				if(i==29) {
-					
-				}
+				return vysledek;
 			}
+			else {
+				file += ".jpeg";
+				Image img = Image.FromFile(file);
+				Bitmap bm = new Bitmap(img);
+				Picture vysledek = new Picture(39,30);
+				for (int i=0;i<39; i++) {
+					for (int j=0; j<30; j++) {
+						color = bm.GetPixel(j,i);
+						vysledek.map2D[i,j] = color.GetBrightness();
+					}
+				}
+				return vysledek;
+			}
+		}
+		
+		double normalization(byte color) {
+			double vysledek = ((double)color)/256;
 			return vysledek;
 		}
 		
-		int calculateResult(double[,] picture) {
-			double[][,] firstConvolution = new double[net.convolutions.Count/3][,];				//prvni vrstva, convolution 11x11
+		
+		int calculateResult(Picture picture) {
+			Picture[] firstConvolution = new Picture[net.convolutions.Count/3];			//prvni vrstva, convolution 11x11
 			for(int i=0; i<net.convolutions.Count/3; i++) {
-				firstConvolution[i] = applyConvolution(i, picture);							//prvni konvoluce
-				firstConvolution[i] = function(firstConvolution[i], "Tanh");				// prvni funkce aktivace (Tanh)
-				firstConvolution[i] = addX(firstConvolution[i]);				
-				firstConvolution[i] = pooling(2, firstConvolution[i]);						//prvni pooling
+				firstConvolution[i] = new Picture(applyConvolution(i, picture));							//prvni konvoluce
+				firstConvolution[i].map2D = function(firstConvolution[i].map2D, "Tanh");				// prvni funkce aktivace (Tanh)
+				firstConvolution[i].map2D = addX(firstConvolution[i]);				
+				firstConvolution[i].map2D = pooling(2, firstConvolution[i].map2D);						//prvni pooling
 				
 			}
-			double[][,] secondConvolution = new double[(int)Math.Pow(net.convolutions.Count/3, 2)][,];
+			Picture[] secondConvolution = new Picture[(int)Math.Pow(net.convolutions.Count/3, 2)];
 			int  cisloFiltra = 5;
 			int  cisloPolozky = 0;
 			for(int j=0; j<net.convolutions.Count/3; j++) {
 				for(int i=0; i<net.convolutions.Count/3; i++) {
-					secondConvolution[cisloPolozky] = applyConvolution(cisloFiltra, firstConvolution[j]);
-					secondConvolution[cisloPolozky] = function(secondConvolution[cisloPolozky], "Tanh");
-					secondConvolution[cisloPolozky] = pooling(2, secondConvolution[cisloPolozky]);
+					secondConvolution[cisloPolozky] = new Picture(applyConvolution(cisloFiltra, firstConvolution[j]));
+					secondConvolution[cisloPolozky].map2D = function(secondConvolution[cisloPolozky].map2D, "Tanh");
+					secondConvolution[cisloPolozky].map2D = pooling(2, secondConvolution[cisloPolozky].map2D);
 					cisloFiltra++;
 					cisloPolozky++;
 				}
@@ -132,20 +184,12 @@ namespace BP_pokus_3
 					index = i;
 				}
 			}
-			LinkedListNode<Convolution> templ = net.convolutions.First;
-			for (int i=0; i<net.convolutions.Count; i++) {
-//				templ.Value.countAverageInput();
-//				templ.Value.countAverageOutput();
-//				for(int k=0; k<templ.Value.avInput.GetUpperBound(0)+1;k++) {			//mazani zbytecnych dat
-//					for(int j=0; j<templ.Value.avInput.GetUpperBound(1)+1; j++) {
-//						templ.Value.avInput[k,j].inputList.Clear();
-//					}
-//				}
-//				templ.Value.allOutputs.Clear();
-				templ.Value.clearInputMass();
-				templ.Value.clearOutput();
-				templ = templ.Next;
-			}
+//			LinkedListNode<Convolution> templ = net.convolutions.First;
+//			for (int i=0; i<net.convolutions.Count; i++) {
+//				templ.Value.clearInputMass();
+//				templ.Value.clearOutput();
+//				templ = templ.Next;
+//			}
 			
 			return index;
 		}
@@ -185,7 +229,7 @@ namespace BP_pokus_3
 			
 			
 			while(testValue < 100) {
-				lokResult = calculateResult(getPicture());
+				lokResult = calculateResult(getPicture(true));						//getPicture if color picture -true, black and white - false
 				Neuron templ3 = net.l2.head;
 				for  (int i=0; i<Neuronet.tretiVrstva; i++) {
 					if (Answer == i)
@@ -240,9 +284,16 @@ namespace BP_pokus_3
 					templ1 = templ1.next;
 				}
 				
+				LinkedListNode<Convolution> templ = net.convolutions.First;
+				for (int i=0; i<net.convolutions.Count; i++) {
+					templ.Value.countAverageInput();
+//					templ.Value.countAverageInput3D();
+					templ.Value.countAverageOutput();
+					templ = templ.Next;
+				}
 				
 				//pro filtry 10 az 14
-				LinkedListNode<Convolution> templ = net.convolutions.First;
+				templ = net.convolutions.First;
 				while(templ.Value.cisloFiltra!=net.convolutions.Count/3*2) {
 					templ = templ.Next;
 				}
@@ -253,13 +304,16 @@ namespace BP_pokus_3
 						grad+=templ1.grad;												//sumarizuje gradient predhozi vrstvy
 						templ1 = templ1.next;
 					}
+					if (iteration==7) {
+						
+					}
 					templ.Value.grad = grad*0.388*(1.7159 - templ.Value.averageOutput)*(1.7159 + templ.Value.averageOutput)/net.l0.length;
 					if (grad == 0) {
 						gradNull++;
 					}
-					for(int k=0; k<templ.Value.weights.GetUpperBound(0)+1; k++) {
-						for(int q=0; q<templ.Value.weights.GetUpperBound(1)+1; q++) {
-							templ.Value.weights[k,q] += net.speedL1CL*templ.Value.grad*templ.Value.avInput[k,q];
+					for(int k=0; k<templ.Value.weights2D.GetUpperBound(0)+1; k++) {
+						for(int q=0; q<templ.Value.weights2D.GetUpperBound(1)+1; q++) {
+							templ.Value.weights2D[k,q] += net.speedL1CL*templ.Value.grad*templ.Value.avInput[k,q];
 						}
 					}
 					templ = templ.Next;
@@ -284,9 +338,9 @@ namespace BP_pokus_3
 					if (grad == 0) {
 						gradNull++;
 					}
-					for(int k=0; k<templ.Value.weights.GetUpperBound(0)+1; k++) {
-						for(int q=0; q<templ.Value.weights.GetUpperBound(1)+1; q++) {
-							templ.Value.weights[k,q] += net.speedL2CL*templ.Value.grad*templ.Value.avInput[k,q];
+					for(int k=0; k<templ.Value.weights2D.GetUpperBound(0)+1; k++) {
+						for(int q=0; q<templ.Value.weights2D.GetUpperBound(1)+1; q++) {
+							templ.Value.weights2D[k,q] += net.speedL2CL*templ.Value.grad*templ.Value.avInput[k,q];
 						}
 					}
 					templ = templ.Next;
@@ -308,14 +362,29 @@ namespace BP_pokus_3
 					if (grad == 0) {
 						gradNull++;
 					}
-					for(int k=0; k<templ.Value.weights.GetUpperBound(0)+1; k++) {
-						for(int q=0; q<templ.Value.weights.GetUpperBound(1)+1; q++) {
-							templ.Value.weights[k,q] += net.speedL3CL*templ.Value.grad*templ.Value.avInput[k,q];
+					if(templ.Value.weights2D == null) {
+						for(int k=0; k<templ.Value.weights3D.GetUpperBound(0)+1; k++) {
+							for(int q=0; q<templ.Value.weights3D.GetUpperBound(1)+1; q++) {
+								for(int z=0; z<templ.Value.weights3D.GetUpperBound(2)+1; z++) {
+									templ.Value.weights3D[k,q,z] += net.speedL3CL*templ.Value.grad*templ.Value.avInput3D[k,q,z];
+								}
+							}
 						}
-						
+						templ = templ.Next;
 					}
+					else {
+						MessageBox.Show("Unexpected 2-d convolution in a study method ");
+					}
+				}
+				
+				templ = net.convolutions.First;
+				for (int i=0; i<net.convolutions.Count; i++) {
+					templ.Value.clearInputMass();
+					templ.Value.clearInputMass3D();
+					templ.Value.clearOutput();
 					templ = templ.Next;
 				}
+				writeAllConvolution(iteration);
 				
 				if (Answer != lokResult) {
 					lokError++;
@@ -376,14 +445,22 @@ namespace BP_pokus_3
 			return result;
 		}
 		
-		double[,] applyConvolution(int cisloFiltra, double[,] picture){
+		double[,] applyConvolution(int cisloFiltra, Picture picture){
 			LinkedListNode<Convolution> templ = net.convolutions.First;
 			while(cisloFiltra != 0 ) {
 				templ = templ.Next;
 				cisloFiltra--;
 			}
-			int x = picture.GetUpperBound(1)-templ.Value.weights.GetUpperBound(1)+2;		// rozmer vysledne matici - x a y
-			int y = picture.GetUpperBound(0)-templ.Value.weights.GetUpperBound(0)+2;
+			int x;
+			int y;
+			if (picture.map3D == null) {
+				x = picture.map2D.GetUpperBound(1) - templ.Value.weights2D.GetUpperBound(1)+2;		// rozmer vysledne matici - x a y
+				y = picture.map2D.GetUpperBound(0) - templ.Value.weights2D.GetUpperBound(0)+2;
+			}
+			else {
+				x = picture.map3D.GetUpperBound(1) - templ.Value.weights3D.GetUpperBound(0)+2;		// rozmer vysledne matici - x a y
+				y = picture.map3D.GetUpperBound(0) - templ.Value.weights3D.GetUpperBound(1)+2;
+			}
 			double[,] result = new double[y,x];
 			int x0, y0;
 			for(int i=0; i<y; i++) {
@@ -398,30 +475,66 @@ namespace BP_pokus_3
 			return result;
 		}
 
-		double sum(double[,] picture, Convolution templ , int x0, int y0) {
+		double sum(Picture picture, Convolution templ , int x0, int y0) {
 			double result = 0;
 			int y = 0;			// kountery pro konvoluce
 			int x = 0;
-			for(int i=y0; i<y0+templ.size; i++) {
-				for(int j=x0; j<x0+templ.size; j++) {
-					if(j==picture.GetUpperBound(1)+1) {
-						result += picture[i,j-1]*templ.weights[y,x];
-//						templ.avInput[y,x].inputList.AddLast(picture[i,j-1]);
-						templ.addInput(picture[i,j - 1], y, x); 
+			if(picture.map3D == null) {
+				for(int i=y0; i<y0+templ.weights2D.GetUpperBound(0)+1; i++) {
+					for(int j=x0; j<x0+templ.weights2D.GetUpperBound(1)+1; j++) {
+						if(j==picture.map2D.GetUpperBound(1)+1) {
+							result += picture.map2D[i,j-1]*templ.weights2D[y,x];
+							templ.addInput(picture.map2D[i,j - 1], y, x); 
+						}
+						else {
+							result += picture.map2D[i,j]*templ.weights2D[y,x];
+							templ.addInput(picture.map2D[i,j], y, x);
+						}
+						x++;
 					}
-					else {
-						result += picture[i,j]*templ.weights[y,x];
-//						templ.avInput[y,x].inputList.AddLast(picture[i,j]);
-						templ.addInput(picture[i,j], y, x);
-					}
-					x++;
+					x=0;
+					y++;
 				}
-				x=0;
-				y++;
+				templ.addOutput(result);
+				return result;
 			}
-			templ.addOutput(result);
-//			templ.allOutputs.AddLast(result);
-			return result;
+			else {
+				for(int i=y0; i<y0+templ.size2; i++) {
+					for(int j=x0; j<x0+templ.size1; j++) {
+						for(int k=0; k<3; k++) {
+//							try{
+//								result += picture.map3D[i,j,k]*templ.weights3D[y,x,k];
+//							}
+//							catch(Exception e) {
+//								countException ++;
+//							}
+							if(j==picture.map3D.GetUpperBound(1)+1) {
+								result += picture.map3D[i,j-1,k]*templ.weights3D[y,x,k];
+								templ.addInput(picture.map3D[i,j - 1, k], y, x, k); 
+							}
+							else {
+								result += picture.map3D[i,j,k]*templ.weights3D[y,x,k];
+								templ.addInput(picture.map3D[i,j,k], y, x, k);
+							}
+//							x++;
+//							if(j==picture.size2) {
+//								result += picture.map2D[i,j-1]*templ.weights2D[y,x];
+//								templ.addInput(picture.map2D[i,j - 1], y, x); 
+//							}
+//							else {
+//								result += picture.map2D[i,j]*templ.weights2D[y,x];
+//								templ.addInput(picture.map2D[i,j], y, x);
+//							}
+//							x++;
+						}
+						x++;
+					}
+					x=0;
+					y++;
+				}
+				templ.addOutput(result);
+				return result;
+			}
 		}
 			
 		double[] doOneArray(double[][,] thirdConvolution) {
@@ -439,12 +552,12 @@ namespace BP_pokus_3
 			return result;
 		}
 		
-		public static void writeInfo(double[,] picture, String typeOfTransformation)	//zobrazuje zmeny primo v konvolucich
-		{
-			_info +=typeOfTransformation+" -> "+"\r\n"+"x- "+ (picture.GetUpperBound(1)+1).ToString() +"\r\n"+ "y -"+(picture.GetUpperBound(0)+1).ToString()+"\r\n";
-			File.WriteAllText("Date.txt", _info);
-			writeConvolution(picture, typeOfTransformation);
-		}
+//		public static void writeInfo(double[,] picture, String typeOfTransformation)	//zobrazuje zmeny primo v konvolucich
+//		{
+//			_info +=typeOfTransformation+" -> "+"\r\n"+"x- "+ (picture.GetUpperBound(1)+1).ToString() +"\r\n"+ "y -"+(picture.GetUpperBound(0)+1).ToString()+"\r\n";
+//			File.WriteAllText("Date.txt", _info);
+//			writeConvolution(picture, typeOfTransformation);
+//		}
 
 		static void writeProgressInfo(int iteration, double errorMin, int testValue, Stopwatch timer, int gradNull) {
 			progressInfo += "epoch = "+iteration/10+" error min. = "+errorMin+" test= "+testValue+"     h:"+timer.Elapsed.Hours.ToString()+" m:"+timer.Elapsed.Minutes.ToString()+" s:"+timer.Elapsed.Seconds.ToString() +" counter null grad-"+gradNull+"\r\n";                                      			
@@ -459,21 +572,37 @@ namespace BP_pokus_3
 		void writeAllConvolution(int iteration) {
 			LinkedListNode<Convolution> templ = net.convolutions.First;
 			for(int i=0; i<net.convolutions.Count; i++) {
-				writeConvolution(templ.Value.weights, "Conv. № "+i+" iteration: "+ iteration);
+				writeConvolution(templ.Value, "Conv. № "+i+" iteration: "+ iteration);
 				templ = templ.Next;
 			}
 		}
 		
-		static void writeConvolution(double[,] picture, string typeOfTransformation) {	
+		static void writeConvolution(Convolution picture, string typeOfTransformation) {	
 			_convolutionsInfo += typeOfTransformation+"\r\n";
-			for (int i=0; i<picture.GetUpperBound(0)+1; i++) {
-				for (int j=0; j<picture.GetUpperBound(1)+1; j++) {
-					_convolutionsInfo += picture[i,j].ToString()+"  ";
+			if(picture.weights3D==null) {
+				for (int i=0; i<picture.weights2D.GetUpperBound(0)+1; i++) {
+					for (int j=0; j<picture.weights2D.GetUpperBound(1)+1; j++) {
+						_convolutionsInfo += picture.weights2D[i,j].ToString()+"  ";
+					}
+					_convolutionsInfo += "\r\n";
 				}
-				_convolutionsInfo += "\r\n";
+				_convolutionsInfo += "\r\n"+"\r\n";
+				File.WriteAllText("Convolutions.txt", _convolutionsInfo);
 			}
-			_convolutionsInfo += "\r\n"+"\r\n";
-			File.WriteAllText("Convolutions.txt", _convolutionsInfo);
+			else {
+				for (int i=0; i<picture.weights3D.GetUpperBound(0)+1; i++) {
+					for (int j=0; j<picture.weights3D.GetUpperBound(1)+1; j++) {
+						_convolutionsInfo += "[";
+						for (int k=0; k<picture.weights3D.GetUpperBound(2)+1; k++) {
+							_convolutionsInfo += picture.weights3D[i,j,k].ToString()+",";
+						}
+						_convolutionsInfo += "] ";
+					}
+					_convolutionsInfo += "\r\n";
+				}
+				_convolutionsInfo += "\r\n"+"\r\n";
+				File.WriteAllText("Convolutions.txt", _convolutionsInfo);
+			}
 		}
 		
 		public	int test() {
@@ -481,7 +610,7 @@ namespace BP_pokus_3
 			for (int j=0; j<1; j++) {
 				newEpoch();
 				for (int i=0; i<10; i++) {
-					int vysOperace = calculateResult(getPicture());
+					int vysOperace = calculateResult(getPicture(true));
 					if (Answer == vysOperace) {
 						vysledek += 1;
 					}
@@ -518,19 +647,25 @@ namespace BP_pokus_3
 			}
 		}
 		
-		double[,] addX(double[,] picture) {								//pridani sloupce '0' k polu
-			double[,] result = new double[picture.GetUpperBound(0)+1, picture.GetUpperBound(1)+2 ];
-			for(int i=0; i<picture.GetUpperBound(0)+1; i++) {
-				for(int j=0; j<picture.GetUpperBound(1)+2; j++) {
-					if(j==picture.GetUpperBound(1)+1) {
-						result[i,j] = -100;
-					}
-					else {
-						result[i,j] = picture[i,j];
+		double[,] addX(Picture picture) {								//pridani sloupce '0' k polu
+			if(!picture.isColor) {
+				double[,] result = new double[picture.map2D.GetUpperBound(0)+1, picture.map2D.GetUpperBound(1)+2 ];
+				for(int i=0; i<picture.map2D.GetUpperBound(0)+1; i++) {
+					for(int j=0; j<picture.map2D.GetUpperBound(1)+2; j++) {
+						if(j==picture.map2D.GetUpperBound(1)+1) {
+							result[i,j] = -100;
+						}
+						else {
+							result[i,j] = picture.map2D[i,j];
+						}
 					}
 				}
+				return result;
 			}
-			return result;
+			else {
+				MessageBox.Show("В addX зашел 3d picture");
+				return null;
+			}
 		}
 
 		double[,] addY(double[,] picture) {									//pridani radka '0' k polu

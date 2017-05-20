@@ -9,13 +9,13 @@ namespace BP_pokus_3
 	{	
 		public List l0, l1, l2;
 		public static int inputLength = 250;		//pro fully connection neuronet
-		public static int prvniVrstva = 70;		
-		public static int druhaVrstva = 60;		
+		public static int prvniVrstva = 90;		
+		public static int druhaVrstva = 80;		
 		public static int tretiVrstva = 10;
 		public double speedLFCN = 0.01;				//rychlost uceni pro "fully connection neuronet"
-		public double speedL1CL = 0.05;				//rychlost uceni pro prvni "convolution layer" 10 az 14
-		public double speedL2CL = 0.05;				//rychlost uceni pro druhy "convolution layer"  5 az 9
-		public double speedL3CL = 0.05;				//rychlost uceni pro treti "convolution layer"  0 az 4
+		public double speedL1CL = 0.062;				//rychlost uceni pro prvni "convolution layer" 10 az 14
+		public double speedL2CL = 0.062;				//rychlost uceni pro druhy "convolution layer"  5 az 9
+		public double speedL3CL = 0.062;				//rychlost uceni pro treti "convolution layer"  0 az 4
 		
 		public int inputLengthOwn;
 		public int prvniVrstvaOwn;

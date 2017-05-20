@@ -384,7 +384,7 @@ namespace BP_pokus_3
 					templ.Value.clearOutput();
 					templ = templ.Next;
 				}
-				writeAllConvolution(iteration);
+//				writeAllConvolution(iteration);
 				
 				if (Answer != lokResult) {
 					lokError++;
@@ -685,14 +685,14 @@ namespace BP_pokus_3
 		
 		void Button1Click(object sender, EventArgs e)
 		{
-//			net = deseralizace("weights");
-//			Neuronet.inputLength = net.inputLengthOwn;
-//			Neuronet.prvniVrstva = net.prvniVrstvaOwn;
-//			Neuronet.druhaVrstva = net.druhaVrstvaOwn;
-//			Neuronet.tretiVrstva = net.tretiVrstvaOwn;
-//			writeProgressInfo(0,test());					//vysledek ve fajlu "short progress info"
-			net = new Neuronet();
-			study();
+			net = deseralizace("weights");
+			Neuronet.inputLength = net.inputLengthOwn;
+			Neuronet.prvniVrstva = net.prvniVrstvaOwn;
+			Neuronet.druhaVrstva = net.druhaVrstvaOwn;
+			Neuronet.tretiVrstva = net.tretiVrstvaOwn;
+			writeProgressInfo(0,test());					//vysledek ve fajlu "short progress info"
+//			net = new Neuronet();
+//			study();
 			button1.BackColor = Color.Green;
 		}
 	}

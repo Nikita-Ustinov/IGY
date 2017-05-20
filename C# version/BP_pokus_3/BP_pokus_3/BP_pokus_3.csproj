@@ -70,5 +70,10 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ProfilingSessions\Session20170520_092540.sdps" />
+    <Content Include="ProfilingSessions\Session20170520_092615.sdps" />
+    <Content Include="ProfilingSessions\Session20170520_092845.sdps" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

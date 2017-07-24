@@ -1,16 +1,17 @@
-import java.util.LinkedList;
+import java.io.Serializable;
+//import java.util.LinkedList;
 //	[Serializable]
-public class Neuronet
+public final class Neuronet implements Serializable
 {	
     public List l0, l1, l2;
     public static int inputLength = 250; //128;  //250;		//pro fully connection neuronet
     public static int prvniVrstva = 70;		
     public static int druhaVrstva = 60;		
     public static int tretiVrstva = 10;
-    public double speedLFCN = 0.01;				//rychlost uceni pro "fully connection neuronet"
-    public double speedL1CL = 0.1;				//rychlost uceni pro prvni "convolution layer" 10 az 14
-    public double speedL2CL = 0.1;				//rychlost uceni pro druhy "convolution layer"  5 az 9
-    public double speedL3CL = 0.1;				//rychlost uceni pro treti "convolution layer"  0 az 4
+    public double speedLFCN = 0.003;				//rychlost uceni pro "fully connection neuronet"
+    public double speedL1CL = 0.02;				//rychlost uceni pro prvni "convolution layer" 10 az 14
+    public double speedL2CL = 0.01;				//rychlost uceni pro druhy "convolution layer"  5 az 9
+    public double speedL3CL = 0.009;				//rychlost uceni pro treti "convolution layer"  0 az 4
 
     public int inputLengthOwn;
     public int prvniVrstvaOwn;

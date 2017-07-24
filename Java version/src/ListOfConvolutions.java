@@ -1,5 +1,8 @@
 
-public class ListOfConvolutions {
+import java.io.Serializable;
+
+
+public class ListOfConvolutions implements Serializable{
   public Convolution head;
   public Convolution next;
   public int size;

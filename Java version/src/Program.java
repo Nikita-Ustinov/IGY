@@ -195,7 +195,7 @@ public class Program implements Serializable {
         double[] err = new double[Neuronet.tretiVrstva];
         int iteration = 1;
         double lokError = 0;
-        double lokResult = 0;
+        int lokResult = 0;
         double errorMin = 100;
         int testValue = 0;
         int bestTestValue = 0;
@@ -205,6 +205,12 @@ public class Program implements Serializable {
         while (testValue < 100) {
             lokResult = calculateResult(getPicture());
             Neuron templ3 = net.l2.head;
+            if((Double.isNaN(templ3.weights[34])||(Double.isNaN(net.l0.head.weights[1]))||(Double.isNaN(net.l1.head.weights[1])))) {
+                System.out.println("NAN NAN NAN iteration "+ iteration);
+            }
+            if(iteration == 12 ) {
+                    int asd = 2;
+            }
             for (int i = 0; i < Neuronet.tretiVrstva; i++) {
                 if (Answer == i) {
                     err[i] = Max - templ3.output;				//zapisuje signal chyby vystupni vrstvy
@@ -322,7 +328,7 @@ public class Program implements Serializable {
                 grad = 0;
 //                countTemplLast = 0;
                 Convolution templLast = net.convolutions.head;		//vrstva se ktere scita gradienty
-                while (templLast.cisloFiltra != net.convolutions.size / 3 -1 ) {
+                while (templLast.cisloFiltra != net.convolutions.size / 3 ) {
                     templLast = templLast.next;
                 }
                 for (int j = 0; j < net.convolutions.size / 3; j++) {
@@ -352,10 +358,9 @@ public class Program implements Serializable {
                 testValue = test();
                 if (testValue > bestTestValue) {
                     bestTestValue = testValue;
-//                    try {
-//                        serializace("BestValue");
-//                    } catch (Exception e) {
-//                    }
+                    System.out.println("");
+                    System.out.println("Better result >>>>>>>>>>>  "+bestTestValue);
+                    System.out.println("");
                 }
                 writeProgressInfo(iteration, testValue);
                 if (iteration % 100 == 0) {
@@ -372,11 +377,12 @@ public class Program implements Serializable {
             }
             iteration++;
         }
+//        writeAllConvolution(iteration); 
         try {
             serializace("normal");
         } catch (Exception e){
             System.out.println("Serialization error in 'normal' way");
-          }
+        }
     }
 
     static double[][] pooling(int size, double[][] picture) {             	// size treba 2x2 => size=2
@@ -564,13 +570,14 @@ public class Program implements Serializable {
     public static void serializace(String wayOfSaving) throws Exception {
         String fileName = null;
         if (wayOfSaving == "normal") {
-            fileName = "wiaght";
+            fileName = "Wiaghts";
         } else {
             fileName = "BestWeights";;
         }
-        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
-        os.writeObject(net);
-        os.close();
+        FileOutputStream fos = new FileOutputStream(fileName+".out");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(net);
+        oos.close();
     }
 
     static Neuronet deseralizace(String way) throws Exception {

@@ -1,5 +1,6 @@
+import java.io.Serializable;
 import java.util.Random;
-public class Neuron
+public class Neuron implements Serializable
 {
     public double [] weights, input;
     public double output, grad, sum ;
@@ -29,7 +30,8 @@ public class Neuron
             Random rand = new Random();
             for (int i=0;i<weights.length; i++){
                     do{
-                    weights[i] = -0.6+rand.nextDouble(); //-6 -> 5
+//                    weights[i] = -0.6+rand.nextDouble(); //-6 -> 5
+                       weights[i] = -2 + Math.random()*4;
                     } while (weights[i]==0);
             }
     }		
@@ -39,7 +41,10 @@ public class Neuron
         sum=0;
         output=0;
         for (int i=0; i<input.length; i++)
-        {
+        {   
+            if(Double.isNaN(sum)) {
+                int ads = 2;
+            }
             sum+=weights[i]*input[i];
         }
         output=1.7159*Math.tanh(0.66*sum); 

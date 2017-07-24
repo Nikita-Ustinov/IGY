@@ -1,6 +1,9 @@
 
+import java.io.Serializable;
+
+
 //[Serializable]
-public class List
+public class List implements Serializable
 {
     public int length;
     public Neuron head;

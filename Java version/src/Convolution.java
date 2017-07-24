@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.util.LinkedList;    
 import java.util.Random;
 
 
 //	[Serializable]
-public class Convolution
+public class Convolution implements Serializable
 {
     public Convolution next;
     public double[][] weights;
@@ -19,8 +20,12 @@ public class Convolution
     private static LinkedList<Convolution> Filters;
     
     public void addInput(Double input, int y, int x) {
-        inputSize[y][x]++;
-        avInput[y][x] = input;       
+        inputSize[y][x]++;  
+        if(avInput[y][x] == null) 
+            avInput[y][x] = new Double(input);
+        else
+            avInput[y][x] += input;
+            
     }
     
     public void addOutput(Double output) {
@@ -48,13 +53,9 @@ public class Convolution
         else {
             weights = doRandomWeights(new double[size][size]);
         }
+        inputSize = new int[size][size];
         avInput = new Double[size][size];
         this.size = size;
-//        for (int i=0; i<size; i++) {
-//            for (int j=0; j<size; j++) {
-//                avInput[i][j]= new Double();
-//            }
-//        }
         if(Filters == null) {
             Filters = new LinkedList<>();
             Filters.addFirst(this);
@@ -69,7 +70,7 @@ public class Convolution
         for(int i=0; i<newFilter.length; i++){                             //GetUpperBound(0)+1
             for(int j=0; j<newFilter[1].length; j++) {                   //GetUpperBound(1)+1
                 do{
-                   newFilter[i][j] = -0.6+ rand.nextDouble();              //rand.Next(-6,5)*0.1 + 0.1;
+                   newFilter[i][j] = -2 + Math.random()*4;            //rand.Next(-6,5)*0.1 + 0.1;
                 } while (newFilter[i][j] == 0 );
             }
         }
@@ -87,12 +88,12 @@ public class Convolution
             for(int j=0; j<newFilter[1].length; j++) {              //getUpperBound(1)+1
                 if((cisloFiltra != 5)||(cisloFiltra != 10)){
                     do{
-                       newFilter[i][j] = -0.6+ rand.nextDouble();   //rand.Next(-6,5)*0.1 + 0.1;
+                       newFilter[i][j] = -2 + Math.random()*4;   //rand.Next(-6,5)*0.1 + 0.1;
                     } while (newFilter[i][j] == templ.weights[i][j]);
                 }
                 else {
                     do{
-                       newFilter[i][j] = -0.6+ rand.nextDouble();   //rand.Next(-6,5)*0.1 + 0.1;
+                       newFilter[i][j] = -2 + Math.random()*4;   //rand.Next(-6,5)*0.1 + 0.1;
                     } while (newFilter[i][j] == 0);
                 }
             }
